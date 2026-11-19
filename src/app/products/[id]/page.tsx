@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { allProducts as checkoutProducts } from '@/lib/payments/catalog';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AppImage from '@/components/ui/AppImage';
@@ -753,7 +754,9 @@ export default function ProductDetailPage() {
   const router = useRouter();
   const productId = params?.id as string;
 
-  const product = allProducts.find((p) => p.id === productId);
+  const details = allProducts.find((p) => p.id === productId);
+  const canonical = checkoutProducts.find((p) => p.id === productId);
+  const product = details && canonical ? { ...details, ...canonical } : undefined;
 
   const [selectedDevice, setSelectedDevice] = useState<DeviceKey>(
     product ? product.devices[0] : 'Android'
@@ -789,15 +792,7 @@ export default function ProductDetailPage() {
   const handleBuy = () => {
     if (product.stock === 'out-of-stock') return;
     setAdded(true);
-    const params = new URLSearchParams({
-      name: product.name,
-      price: displayPrice.toFixed(2),
-      device: selectedDevice,
-      id: product.id,
-    });
-    setTimeout(() => {
-      router.push(`/order-confirmation?${params.toString()}`);
-    }, 700);
+    router.push(`/checkout?product=${encodeURIComponent(product.id)}&device=${encodeURIComponent(selectedDevice)}`);
   };
 
   const deviceColors: Record<DeviceKey, string> = {
@@ -986,14 +981,14 @@ export default function ProductDetailPage() {
               {added ? (
                 <>
                   <Icon name="CheckIcon" size={22} variant="solid" />
-                  Order Placed — Redirecting…
+                  Opening checkout…
                 </>
               ) : product.stock === 'out-of-stock' ? (
                 'Out of Stock'
               ) : (
                 <>
                   <Icon name="ShoppingCartIcon" size={22} variant="solid" />
-                  Add to Cart — ${displayPrice.toFixed(2)}
+                  Buy Now — ${displayPrice.toFixed(2)}
                 </>
               )}
             </button>

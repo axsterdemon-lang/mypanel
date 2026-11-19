@@ -1,0 +1,307 @@
+export interface Product {
+  id: string;
+  name: string;
+  diamonds: number;
+  devices: ('Android' | 'iOS' | 'PC')[];
+  prices: {Android?: number;iOS?: number;PC?: number;};
+  badge?: 'hot' | 'best-value' | 'new' | null;
+  image: string;
+  imageAlt: string;
+  rating: number;
+  reviews: number;
+  stock: 'in-stock' | 'limited' | 'out-of-stock';
+  popular: boolean;
+  lifetime?: boolean;
+}
+
+export const allProducts: Product[] = [
+{
+  id: 'starter-100',
+  name: 'Aim Bot Brutal',
+  diamonds: 100,
+  devices: ['Android'],
+  prices: { Android: 9 },
+  badge: null,
+  image: "https://user23826.na.imgto.link/public/20260814/hq720-11.avif",
+  imageAlt: 'Aim Bot Brutal product image',
+  rating: 4.7,
+  reviews: 312,
+  stock: 'in-stock',
+  popular: false,
+  lifetime: true
+},
+{
+  id: 'bronze-500',
+  name: 'HG Cheats Mod',
+  diamonds: 500,
+  devices: ['Android'],
+  prices: { Android: 12.02 },
+  badge: 'hot',
+  image: "/assets/images/maxresdefault (2).jpg",
+  imageAlt: 'Mobile gaming screen with colorful game interface, dark atmospheric background',
+  rating: 4.8,
+  reviews: 890,
+  stock: 'in-stock',
+  popular: true
+},
+{
+  id: 'silver-1000',
+  name: 'Pato Team V2',
+  diamonds: 1000,
+  devices: ['Android'],
+  prices: { Android: 11.72 },
+  badge: null,
+  image: "/assets/images/hqdefault.jpg",
+  imageAlt: 'Competitive gamer at desktop setup, intense expression, dark room with neon RGB lighting',
+  rating: 4.9,
+  reviews: 1240,
+  stock: 'in-stock',
+  popular: true
+},
+{
+  id: 'android-exclusive-1500',
+  name: 'Prime Hook',
+  diamonds: 1500,
+  devices: ['Android'],
+  prices: { Android: 12 },
+  badge: 'hot',
+  image: "/assets/images/hq720 (3).jpg",
+  imageAlt: 'Android phone showing game with green neon glow, dark background, gaming atmosphere',
+  rating: 4.7,
+  reviews: 445,
+  stock: 'in-stock',
+  popular: false
+},
+{
+  id: 'gold-2000',
+  name: 'Admin Panel',
+  diamonds: 2000,
+  devices: ['Android'],
+  prices: { Android: 16.99 },
+  badge: null,
+  image: "/assets/images/b82aa79739aa2a56f58fd95f2b8f0c7c7022f231.jpg",
+  imageAlt: 'Gaming setup with golden RGB lighting, dark environment, premium esports atmosphere',
+  rating: 4.8,
+  reviews: 756,
+  stock: 'in-stock',
+  popular: false
+},
+{
+  id: 'pro-3000',
+  name: 'Pato Team v1',
+  diamonds: 3000,
+  devices: ['Android'],
+  prices: { Android: 13 },
+  badge: null,
+  image: "/assets/images/hq720 (1).jpg",
+  imageAlt: 'Professional gaming tournament setup, multiple screens, intense competitive atmosphere, dark hall',
+  rating: 4.9,
+  reviews: 2100,
+  stock: 'in-stock',
+  popular: true
+},
+{
+  id: 'elite-5000',
+  name: 'Drip Client Proxy',
+  diamonds: 5000,
+  devices: ['Android'],
+  prices: { Android: 12.00 },
+  badge: 'best-value',
+  image: "/assets/images/1784905788746-9e72a2c82df0bbbbe92c4159.webp",
+  imageAlt: 'High-end gaming rig with purple and blue RGB, dark room, premium gaming setup',
+  rating: 5.0,
+  reviews: 3450,
+  stock: 'in-stock',
+  popular: true
+},
+{
+  id: 'ios-premium-2500',
+  name: 'Miguel Pro',
+  diamonds: 2500,
+  devices: ['iOS'],
+  prices: { iOS: 15.02 },
+  badge: 'new',
+  image: "/assets/images/hq720 (7).jpg",
+  imageAlt: 'iPhone with gaming app running, blue neon background, sleek premium feel',
+  rating: 4.8,
+  reviews: 189,
+  stock: 'limited',
+  popular: false
+},
+{
+  id: 'pc-power-7500',
+  name: 'Bala Mod',
+  diamonds: 7500,
+  devices: ['Android'],
+  prices: { Android: 46.50 },
+  badge: null,
+  image: "/assets/images/hq720 (2).jpg",
+  imageAlt: 'Gaming PC tower with RGB lighting, dark studio, yellow and blue neon illumination',
+  rating: 4.9,
+  reviews: 672,
+  stock: 'in-stock',
+  popular: true
+},
+{
+  id: 'mega-10000',
+  name: 'Drip Client Mod Apk',
+  diamonds: 10000,
+  devices: ['Android'],
+  prices: { Android: 13.52 },
+  badge: 'best-value',
+  image: "/assets/images/drip-client-thumbnail.jpg",
+  imageAlt: 'Epic dual monitor gaming setup with orange and blue neon, dark room, dramatic lighting',
+  rating: 5.0,
+  reviews: 4200,
+  stock: 'in-stock',
+  popular: true
+},
+{
+  id: 'reseller-15000',
+  name: 'Reseller Bundle',
+  diamonds: 15000,
+  devices: ['Android'],
+  prices: { Android: 24 },
+  badge: null,
+  image: "/assets/images/hqdefault.jpg",
+  imageAlt: 'Multiple gaming devices on desk, dark room with multicolored neon glow, reseller setup',
+  rating: 4.8,
+  reviews: 320,
+  stock: 'in-stock',
+  popular: false,
+  lifetime: true
+},
+{
+  id: 'pc-ultimate-20000',
+  name: 'BR MOD ',
+  diamonds: 20000,
+  devices: ['PC'],
+  prices: { PC: 7.50 },
+  badge: 'best-value',
+  image: "https://user23826.na.imgto.link/public/20260814/hq720-8.avif",
+  imageAlt: 'BR MOD product image',
+  rating: 5.0,
+  reviews: 198,
+  stock: 'limited',
+  popular: false
+},
+{
+  id: 'pc-pro-12000',
+  name: 'PC Aim Bot',
+  diamonds: 12000,
+  devices: ['PC'],
+  prices: { PC: 6.01 },
+  badge: 'new',
+  image: "https://user23826.na.imgto.link/public/20260814/hq720-9.avif",
+  imageAlt: 'PC Aim Bot product — gaming software package for PC platform',
+  rating: 4.7,
+  reviews: 85,
+  stock: 'in-stock',
+  popular: false,
+  lifetime: true
+},
+{
+  id: 'pc-elite-8000',
+  name: 'Dark Engine',
+  diamonds: 8000,
+  devices: ['PC'],
+  prices: { PC: 12.02 },
+  badge: null,
+  image: "/assets/images/hq720 (4).jpg",
+  imageAlt: 'Dark Engine product — premium PC gaming enhancement package',
+  rating: 4.8,
+  reviews: 62,
+  stock: 'in-stock',
+  popular: false
+},
+{
+  id: 'ios-swift-800',
+  name: 'Kyzo FF Xit',
+  diamonds: 800,
+  devices: ['iOS'],
+  prices: { iOS: 10.52 },
+  badge: 'new',
+  lifetime: true,
+  image: "/assets/images/maxresdefault (3).jpg",
+  imageAlt: 'Kyzo FF Xit product image',
+  rating: 4.6,
+  reviews: 54,
+  stock: 'in-stock',
+  popular: false
+},
+{
+  id: 'ios-elite-6000',
+  name: 'Fluorite Panel',
+  diamonds: 6000,
+  devices: ['iOS'],
+  prices: { iOS: 15 },
+  badge: 'best-value',
+  image: "https://user23826.na.imgto.link/public/20260814/images-5.avif",
+  imageAlt: 'Fluorite Panel iOS product — premium gaming panel interface with vibrant display',
+  rating: 4.9,
+  reviews: 87,
+  stock: 'limited',
+  popular: true
+},
+{
+  id: 'ios-ultra-12000',
+  name: 'Proxy Ios ',
+  diamonds: 12000,
+  devices: ['iOS'],
+  prices: { iOS: 13.52 },
+  badge: null,
+  image: "/assets/images/hq720 (6).jpg",
+  imageAlt: 'Proxy Ios product image',
+  rating: 4.8,
+  reviews: 41,
+  stock: 'in-stock',
+  popular: false,
+  lifetime: true
+},
+{
+  id: 'ios-spark-400',
+  name: 'Aim Lock ios',
+  diamonds: 400,
+  devices: ['iOS'],
+  prices: { iOS: 7.51 },
+  badge: null,
+  image: "/assets/images/Aimlock-FF-Headshot.webp",
+  imageAlt: 'Aim Lock iOS — aim lock gaming tool for iOS devices',
+  rating: 4.5,
+  reviews: 18,
+  stock: 'in-stock',
+  popular: false,
+  lifetime: true
+},
+{
+  id: 'ios-blaze-1500',
+  name: 'Proxy Bhanu',
+  diamonds: 1500,
+  devices: ['iOS'],
+  prices: { iOS: 10.50 },
+  badge: 'hot',
+  image: "https://user23826.na.imgto.link/public/20260814/maxresdefault-4.avif",
+  imageAlt: 'Proxy Bhanu — mid-tier gaming diamonds bundle for iOS users',
+  rating: 4.7,
+  reviews: 32,
+  stock: 'in-stock',
+  popular: true,
+  lifetime: true
+},
+{
+  id: 'ios-titan-4000',
+  name: 'iOS\nBody Hs',
+  diamonds: 4000,
+  devices: ['iOS'],
+  prices: { iOS: 10.52 },
+  badge: 'best-value',
+  image: "https://user23826.na.imgto.link/public/20260814/hq720-7.avif",
+  imageAlt: 'Body Hs — premium high-value diamonds bundle exclusively for iOS',
+  rating: 4.9,
+  reviews: 27,
+  stock: 'in-stock',
+  popular: true,
+  lifetime: true
+}];
+
+

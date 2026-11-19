@@ -11,6 +11,21 @@ const nextConfig = {
     root: projectRoot,
   },
   outputFileTracingRoot: projectRoot,
+  outputFileTracingExcludes: {
+    '/*': ['./.payment-data/**/*', './.env*', './tests/**/*'],
+  },
+  async headers() {
+    return [
+      { source: '/api/payments/:path*', headers: [
+        { key: 'Cache-Control', value: 'no-store' },
+        { key: 'X-Content-Type-Options', value: 'nosniff' },
+      ] },
+      ...['/checkout', '/order-confirmation', '/admin/:path*'].map(source => ({ source, headers: [
+        { key: 'X-Robots-Tag', value: 'noindex, nofollow' },
+        { key: 'Referrer-Policy', value: 'no-referrer' },
+      ] })),
+    ];
+  },
   productionBrowserSourceMaps: true,
   // Use a dedicated dev output folder so stale/OneDrive-locked .next files cannot block startup.
   distDir: process.env.DIST_DIR || '.next-dev',

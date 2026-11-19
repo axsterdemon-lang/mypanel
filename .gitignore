@@ -1,12 +1,15 @@
 # Node modules
 node_modules/
 .env
+.payment-data/
 .env.*
 !.env.example
 
 # Next.js build output
 .next/
 .next-dev/
+.next-payment-check/
+.next-payment-dev/
 out/
 
 # Production build

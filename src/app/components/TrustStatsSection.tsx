@@ -22,7 +22,7 @@ const guarantees = [
   {
     icon: 'ShieldCheckIcon',
     title: '100% Secure',
-    desc: 'All transactions are SSL encrypted. We never store your payment details.',
+    desc: 'Payment slips are stored privately for review. Payments are confirmed after checking the incoming transaction.',
     color: 'text-electric',
     border: 'border-electric/20',
     bg: 'bg-electric-subtle',

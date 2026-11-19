@@ -8,10 +8,19 @@ const localRoot = () => path.resolve(process.env.PAYMENTS_DATA_DIR || '.payment-
 const local = () => process.env.NODE_ENV !== 'production' && !process.env.NETLIFY;
 // Storage requests must bypass Next's fetch/Data Cache, which itself uses Blobs on Netlify.
 // This follows the unpatched-fetch strategy used by Netlify's Next.js runtime.
-export const storageFetch: typeof fetch = (input, init) => {
+export const storageFetch: typeof fetch = async (input, init) => {
   const current = globalThis.fetch as typeof fetch & { _nextOriginalFetch?: typeof fetch };
   const original = current._nextOriginalFetch || current;
-  return original(input, { ...init, cache: 'no-store' });
+  const method = init?.method || 'GET';
+  if (process.env.NODE_ENV === 'production') console.info('[payment-storage] request', method);
+  try {
+    const response = await original(input, { ...init, cache: 'no-store', signal: init?.signal || AbortSignal.timeout(5000) });
+    if (process.env.NODE_ENV === 'production') console.info('[payment-storage] response', method, response.status);
+    return response;
+  } catch (error) {
+    if (process.env.NODE_ENV === 'production') console.error('[payment-storage] transport-error', (error as Error).name);
+    throw error;
+  }
 };
 const cloud = () => getStore({ name: 'private-payment-orders-v1', consistency: 'strong', fetch: storageFetch });
 const hash = (s: string) => createHash('sha256').update(s).digest('hex');
@@ -19,7 +28,9 @@ const filename = (key: string) => path.join(localRoot(), `${Buffer.from(key).toS
 
 export async function readRecord<T>(key: string): Promise<{ value: T; etag: string } | null> {
   if (!local()) {
+    if (process.env.NODE_ENV === 'production') console.info('[payment-storage] read', key.split('/')[0]);
     const entry = await cloud().getWithMetadata(key, { type: 'json' });
+    if (process.env.NODE_ENV === 'production') console.info('[payment-storage] read-complete', Boolean(entry));
     if (entry && !entry.etag) throw new Error('Payment store returned no concurrency token.');
     return entry ? { value: entry.data as T, etag: entry.etag! } : null;
   }

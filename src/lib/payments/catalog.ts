@@ -303,5 +303,3 @@ export const allProducts: Product[] = [
   popular: true,
   lifetime: true
 }];
-
-

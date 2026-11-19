@@ -6,7 +6,14 @@ import path from 'node:path';
 // Production never falls back to ephemeral serverless disk.
 const localRoot = () => path.resolve(process.env.PAYMENTS_DATA_DIR || '.payment-data');
 const local = () => process.env.NODE_ENV !== 'production' && !process.env.NETLIFY;
-const cloud = () => getStore({ name: 'private-payment-orders-v1', consistency: 'strong' });
+// Storage requests must bypass Next's fetch/Data Cache, which itself uses Blobs on Netlify.
+// This follows the unpatched-fetch strategy used by Netlify's Next.js runtime.
+export const storageFetch: typeof fetch = (input, init) => {
+  const current = globalThis.fetch as typeof fetch & { _nextOriginalFetch?: typeof fetch };
+  const original = current._nextOriginalFetch || current;
+  return original(input, { ...init, cache: 'no-store' });
+};
+const cloud = () => getStore({ name: 'private-payment-orders-v1', consistency: 'strong', fetch: storageFetch });
 const hash = (s: string) => createHash('sha256').update(s).digest('hex');
 const filename = (key: string) => path.join(localRoot(), `${Buffer.from(key).toString('base64url')}.json`);
 

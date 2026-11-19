@@ -14,7 +14,7 @@ process.env.PAYMENT_ADMIN_PASSWORD='test-only-owner-password-7358';process.env.P
 const {createOrder,customerOrder,submitReceipt,reviewOrder}=require('../src/lib/payments/service.ts');
 const {requireAdmin,makeSession,rateLimit,sameOrigin}=require('../src/lib/payments/security.ts');
 const {detectMime}=require('../src/lib/payments/checks.ts');
-const {readRecord,writeRecord}=require('../src/lib/payments/store.ts');
+const {readRecord,writeRecord,storageFetch}=require('../src/lib/payments/store.ts');
 const image=(suffix)=>Buffer.concat([Buffer.from([137,80,78,71,13,10,26,10]),Buffer.from(suffix)]);
 const fields=(ref)=>({account:'001021031868',amount:'2700.00',currency:'LKR',date:'2026-11-20',time:'12:20',reference:ref});
 after(()=>{console.log('Temporary test data (contains synthetic receipts only): '+dir);});
@@ -96,4 +96,13 @@ test('one owner password enables checkout by default, but no password fails clos
   await assert.rejects(createOrder({productId:'starter-100',device:'Android',method:'bank'}),/not been configured/);
   process.env.PAYMENT_ADMIN_PASSWORD=password;
   process.env.PAYMENTS_ENABLED='true';
+});
+test('storage fetch bypasses Next Data Cache and disables request caching',async()=>{
+  const original=globalThis.fetch;
+  let captured;
+  const patched=()=>{throw new Error('Next cache must not be called for storage');};
+  patched._nextOriginalFetch=async(input,init)=>{captured=init;return new Response('ok');};
+  globalThis.fetch=patched;
+  try { const response=await storageFetch('https://example.invalid/blobs',{method:'GET'}); assert.equal(await response.text(),'ok');assert.equal(captured.cache,'no-store'); }
+  finally {globalThis.fetch=original;}
 });

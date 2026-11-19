@@ -1,6 +1,8 @@
 export async function paymentRequest(url: string, init?: RequestInit) {
   const response = await fetch(url, { ...init, cache: 'no-store' });
-  const data = await response.json();
+  let data;
+  try { data = await response.json(); }
+  catch { throw new Error('The payment service did not respond in time. Please refresh your order status before trying again.'); }
   if (!response.ok) throw new Error(data.error || 'Request failed. Please try again.');
   return data;
 }

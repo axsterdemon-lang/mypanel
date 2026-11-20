@@ -1,0 +1,80 @@
+.button {
+  position: fixed;
+  z-index: 80;
+  left: max(20px, env(safe-area-inset-left));
+  bottom: max(22px, env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 58px;
+  padding: 9px 18px 9px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  color: #fff;
+  background: linear-gradient(145deg, #25d366 0%, #11a954 100%);
+  box-shadow: 0 10px 32px rgba(15, 191, 94, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+
+.button:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.06);
+  box-shadow: 0 14px 38px rgba(15, 191, 94, 0.46), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}
+
+.icon {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  color: #fff;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1.2;
+}
+
+.number {
+  padding-left: 10px;
+  border-left: 1px solid rgba(255, 255, 255, 0.42);
+  font-size: 13px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+  .button {
+    left: max(14px, env(safe-area-inset-left));
+    bottom: max(16px, env(safe-area-inset-bottom));
+    min-height: 54px;
+    gap: 8px;
+    padding: 8px 14px 8px 10px;
+  }
+
+  .icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .label {
+    font-size: 13px;
+  }
+
+  .number {
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}

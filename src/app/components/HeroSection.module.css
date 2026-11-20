@@ -1,0 +1,52 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #090910;
+  padding-top: 80px;
+}
+
+.artwork, .overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.backgroundImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 68% top;
+}
+
+.overlay {
+  background: linear-gradient(90deg, rgba(7, 7, 14, .85), rgba(7, 7, 14, .55) 38%, rgba(7, 7, 14, .05) 72%), linear-gradient(0deg, #0a0a0f, transparent 24%);
+}
+
+.container {
+  position: relative;
+  max-width: 1280px;
+  margin: auto;
+  padding: 64px 32px 100px;
+  min-height: calc(100svh - 80px);
+  display: flex;
+  align-items: center;
+}
+
+.content {
+  width: 54%;
+  max-width: 660px;
+}
+
+.content p, .content > a, .content > div:last-of-type {
+  color: #d1ceda;
+}
+
+@media (max-width: 760px) {
+  .backgroundImage { object-position: 72% top; }
+  .overlay {
+    background: linear-gradient(90deg, rgba(7, 7, 14, .78), rgba(7, 7, 14, .42)), linear-gradient(0deg, #0a0a0f, transparent 55%);
+  }
+  .container { padding: 48px 20px 90px; }
+  .content { width: 100%; max-width: 560px; }
+}

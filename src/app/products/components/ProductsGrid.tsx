@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { allProducts, type Product } from '@/lib/payments/catalog';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
+import backdrop from '@/components/PanelBackdrop.module.css';
 
 type DeviceType = 'All' | 'Android' | 'iOS' | 'PC';
 type SortType = 'popular' | 'price-asc' | 'price-desc' | 'diamonds-asc' | 'diamonds-desc';
@@ -230,7 +231,7 @@ export default function ProductsGrid() {
 
   return (
     <>
-      <section ref={sectionRef} className="py-12 pb-24 bg-background relative">
+      <section ref={sectionRef} className={`${backdrop.section} py-12 pb-24 relative`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* Filters row */}

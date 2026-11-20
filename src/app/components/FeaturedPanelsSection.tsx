@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Icon from '@/components/ui/AppIcon';
+import backdrop from '@/components/PanelBackdrop.module.css';
 
 const featuredPanels = [
 {
@@ -174,7 +175,7 @@ export default function FeaturedPanelsSection() {
   }, []);
 
   return (
-    <section id="featured-panels" ref={sectionRef} className="py-20 bg-background relative overflow-hidden">
+    <section id="featured-panels" ref={sectionRef} className={`${backdrop.section} py-20 relative overflow-hidden`}>
       <div
         className="absolute top-0 right-0 w-96 h-96 rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(circle, rgba(255,215,0,0.06) 0%, transparent 70%)' }} />

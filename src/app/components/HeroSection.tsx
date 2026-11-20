@@ -24,7 +24,7 @@ export default function HeroSection() {
   const device = devices[activeDevice];
 
   return (
-    <section className={styles.hero}>
+    <section className={styles.hero} data-depth-background>
       <div className={styles.artwork} aria-hidden="true">
         <AppImage src="/assets/images/samurai-home-background.png" alt="" width={1672} height={941} priority className={styles.backgroundImage} />
       </div>

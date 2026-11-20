@@ -17,6 +17,20 @@
   height: 100%;
   object-fit: cover;
   object-position: 68% top;
+  animation: cinematicDrift 26s ease-in-out infinite;
+  animation-play-state: var(--background-play, paused);
+  transform-origin: 72% 40%;
+}
+
+.artwork {
+  inset: -26px;
+  translate: var(--depth-x, 0px) var(--depth-y, 0px);
+  transition: translate 1.8s cubic-bezier(.2, .7, .25, 1);
+}
+
+@keyframes cinematicDrift {
+  0%, 100% { transform: perspective(1400px) scale(1.06) translate3d(-.4%, -.3%, 0) rotateY(-1deg) rotateZ(-.25deg); }
+  50% { transform: perspective(1400px) scale(1.115) translate3d(.6%, .4%, 0) rotateY(1.1deg) rotateZ(.3deg); }
 }
 
 .overlay {
@@ -43,10 +57,16 @@
 }
 
 @media (max-width: 760px) {
+  .backgroundImage { animation-duration: 32s; }
   .backgroundImage { object-position: 72% top; }
   .overlay {
     background: linear-gradient(90deg, rgba(7, 7, 14, .78), rgba(7, 7, 14, .42)), linear-gradient(0deg, #0a0a0f, transparent 55%);
   }
   .container { padding: 48px 20px 90px; }
   .content { width: 100%; max-width: 560px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backgroundImage { animation: none; transform: none; }
+  .artwork { translate: none; transition: none; }
 }

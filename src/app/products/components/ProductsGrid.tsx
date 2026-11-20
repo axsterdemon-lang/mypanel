@@ -231,7 +231,7 @@ export default function ProductsGrid() {
 
   return (
     <>
-      <section ref={sectionRef} className={`${backdrop.section} py-12 pb-24 relative`}>
+      <section ref={sectionRef} data-depth-background className={`${backdrop.section} py-12 pb-24 relative`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* Filters row */}

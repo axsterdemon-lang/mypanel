@@ -175,7 +175,7 @@ export default function FeaturedPanelsSection() {
   }, []);
 
   return (
-    <section id="featured-panels" ref={sectionRef} className={`${backdrop.section} py-20 relative overflow-hidden`}>
+    <section id="featured-panels" ref={sectionRef} data-depth-background className={`${backdrop.section} py-20 relative overflow-hidden`}>
       <div
         className="absolute top-0 right-0 w-96 h-96 rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(circle, rgba(255,215,0,0.06) 0%, transparent 70%)' }} />

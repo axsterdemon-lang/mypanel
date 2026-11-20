@@ -7,11 +7,21 @@
 .section::before {
   content: '';
   position: absolute;
-  inset: -8px;
+  inset: -26px;
   z-index: -2;
   pointer-events: none;
   background: url('/assets/images/panels-samurai-background.png') 72% top / cover no-repeat;
   filter: blur(3px) saturate(.7);
+  animation: panelDrift 30s ease-in-out infinite;
+  animation-play-state: var(--background-play, paused);
+  transform-origin: 65% 30%;
+  translate: var(--depth-x, 0px) var(--depth-y, 0px);
+  transition: translate 2s cubic-bezier(.2, .7, .25, 1);
+}
+
+@keyframes panelDrift {
+  0%, 100% { transform: perspective(1800px) scale(1.035) translate3d(-.35%, -.15%, 0) rotateY(-.65deg) rotateZ(-.15deg); }
+  50% { transform: perspective(1800px) scale(1.07) translate3d(.4%, .2%, 0) rotateY(.7deg) rotateZ(.15deg); }
 }
 
 .section::after {
@@ -24,8 +34,13 @@
 }
 
 @media (max-width: 640px) {
+  .section::before { animation-duration: 36s; }
   .section::before { background-size: auto 100%; background-position: 70% top; }
   .section::after {
     background: linear-gradient(180deg, #0a0a0f, transparent 10%, transparent 90%, #0a0a0f), rgba(4, 15, 38, .8);
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section::before { animation: none; transform: none; translate: none; transition: none; }
 }

@@ -5,5 +5,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: `${base}/`, lastModified: new Date(), priority: 1.0 },
     { url: `${base}/products`, lastModified: new Date(), priority: 0.8 },
+    { url: `${base}/refund-policy`, priority: 0.4 },
+    { url: `${base}/privacy-policy`, priority: 0.4 },
+    { url: `${base}/terms-and-conditions`, priority: 0.4 },
   ];
 }

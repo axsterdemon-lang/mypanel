@@ -6,9 +6,10 @@ import Icon from '@/components/ui/AppIcon';
 const footerLinks = [
 { label: 'Home', href: '/' },
 { label: 'Products', href: '/products' },
-{ label: 'How It Works', href: '#how-it-works' },
-{ label: 'Privacy', href: '#' },
-{ label: 'Terms', href: '#' }];
+{ label: 'How It Works', href: '/#how-it-works' },
+{ label: 'Return / Refund Policy', href: '/refund-policy' },
+{ label: 'Privacy Policy', href: '/privacy-policy' },
+{ label: 'Terms & Conditions', href: '/terms-and-conditions' }];
 
 
 const socialLinks = [
